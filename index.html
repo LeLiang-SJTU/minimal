@@ -1,0 +1,70 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Home - Jekyll Site</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            display: flex;  
+            margin: 0;  
+        }  
+        nav {  
+            background-color: #f8f9fa;  
+            padding: 1rem;  
+        }  
+        nav a {  
+            margin-right: 1rem;  
+            text-decoration: none;  
+            color: black;  
+        }  
+        .container {  
+            display: flex;  
+            flex-grow: 1;  
+        }  
+        .sidebar {  
+            width: 200px;  
+            background-color: #e9ecef;  
+            padding: 1rem;  
+        }  
+        .content {  
+            flex-grow: 1;  
+            padding: 1rem;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <nav>  
+        {% for item in site.data.nav %}  
+            <a href="{{ item.link }}"  
+                {% if page.url == item.link %} style="color: red;" {% endif %}  
+            >  
+                {{ item.name }}  
+            </a>  
+        {% endfor %}  
+    </nav>  
+
+    <div class="container">  
+        <aside class="sidebar">  
+            <h2>Articles</h2>  
+            <ul>  
+                {% for post in site.posts %}  
+                    <li><a href="{{ post.url }}">{{ post.title }}</a></li>  
+                {% endfor %}  
+            </ul>  
+        </aside>  
+
+        <main class="content">  
+            <h1>Welcome to My Jekyll Site</h1>  
+            <div>  
+                {% for post in site.posts %}  
+                    {% if post.name == "intro" %}  
+                        {{ post.content | markdownify }}  
+                    {% endif %}  
+                {% endfor %}  
+            </div>  
+        </main>  
+    </div>  
+</body>  
+</html>
