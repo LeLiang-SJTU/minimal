@@ -2,6 +2,15 @@
 layout: default
 ---
 
+<nav>
+  {% for item in site.nav %}
+    <a href="{{ item.link }}" 
+      {% if page.url == item.link %} style="color: red;" {% endif %}
+    >
+      {{ item.name }}
+    </a>
+  {% endfor %}
+</nav>
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 [Link to another page](./another-page.html).
